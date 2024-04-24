@@ -39,10 +39,8 @@ switch ($request_method) {
 
    function get_mhss(){
       global $mysqli;
-      $query="SELECT mahasiswa.nim, mahasiswa.nama, mahasiswa.alamat, mahasiswa.tanggal_lahir, matakuliah.kode_mk, matakuliah.nama_mk, matakuliah.sks, perkuliahan.nilai
-      FROM perkuliahan
-      INNER JOIN mahasiswa ON perkuliahan.nim=mahasiswa.nim
-      Inner JOIN matakuliah ON perkuliahan.kode_mk=matakuliah.kode_mk;";
+      $query="SELECT m.nim, m.nama, m.alamat, m.tanggal_lahir, mk.kode_mk, mk.nama_mk, mk.sks, p.nilai FROM mahasiswa m JOIN perkuliahan p ON m.nim = p.nim 
+      JOIN matakuliah mk ON p.kode_mk = mk.kode_mk;";
     
       $data=array();
       $result=$mysqli->query($query);
